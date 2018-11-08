@@ -13,7 +13,7 @@ public class MVCExample extends Application {
     AdditionModel model = new AdditionModel();
     AdditionController controller = new AdditionController(model);
     AdditionView view = new AdditionView(controller, model);
-
+    
     Scene scene = new Scene(view.asParent(), 400, 400);
     primaryStage.setScene(scene);
     primaryStage.show();
