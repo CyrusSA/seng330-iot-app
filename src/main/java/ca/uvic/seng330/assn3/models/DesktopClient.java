@@ -2,16 +2,17 @@ package ca.uvic.seng330.assn3.models;
 
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.UUID;
 
-public class Client {
-  private HashMap<String, String> users;
+public class DesktopClient implements Client {
+  private ArrayList<User> users;
   private final UUID uuid;
 
-  public Client(Hub h) throws HubRegistrationException {
-    h.register(this);
+  public DesktopClient(){
     uuid = UUID.randomUUID();
+    users = new ArrayList<User>();
   }
 
   /*
@@ -25,8 +26,33 @@ public class Client {
   public UUID getIdentifier() {
     return uuid;
   }
-  
-  public void registerUser(String username, String password) {
-	  users.put(username, password);
+
+  public boolean registerUser(User u) {
+    if (users.contains(u)) {
+      return false;
+    } else {
+      users.add(u);
+      return true;
+    }
+  }
+
+  public void unregisterUser(String username) {
+    for (User u : users) {
+      if (u.getUsername().equals(username)) {
+        users.remove(u);
+        break;
+      }
+    }
+  }
+
+  public User validateUser(String username, String password) {
+    for (User u : users) {
+      if (u.getUsername().equals(username)) {
+        if (u.getPassword().equals(password)) {
+          return u;
+        }
+      }
+    }
+    return null;
   }
 }

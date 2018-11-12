@@ -5,6 +5,9 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import ca.uvic.seng330.assn3.models.DesktopClient;
+import ca.uvic.seng330.assn3.models.Hub;
+import ca.uvic.seng330.assn3.models.User;
 import javafx.fxml.FXML;
 
 public class LoginController {
@@ -14,21 +17,19 @@ public class LoginController {
 	public PasswordField passwordField;
 	
 	public void login() {
+		DesktopClient c = ControllerMethods.readClient();
+		Hub h = ControllerMethods.readHub();
 		String username = usernameField.getText();
 		String password = passwordField.getText();
+		User user = c.validateUser(username, password);
 		if(username.isEmpty() || password.isEmpty()) {
-			errorAlert("Please enter both username and password");
-		} else if(username.equals("yo") && password.equals("yoyo")) { //user authenticated
-			errorAlert("sah");
+			ControllerMethods.errorAlert("Please enter both username and password");
+		} else if(user==null) { //user authenticated
+			ControllerMethods.errorAlert("dafuq bro");
 		} else {
-			errorAlert("Please enter both username and password");
+			ControllerMethods.errorAlert("AAYYYOOOOOO " + user.getName() );
 		}
 	}
 	
-	private static void errorAlert(String message) {
-		Alert alert = new Alert(AlertType.ERROR);
-		alert.setHeaderText(null);
-		alert.setContentText(message);
-		alert.showAndWait();
-	}
+
 }
