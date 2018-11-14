@@ -2,6 +2,9 @@ package ca.uvic.seng330.assn3.models.devices;
 
 import java.util.UUID;
 
+
+import com.google.gson.annotations.Expose;
+
 import ca.uvic.seng330.assn3.models.Hub;
 import ca.uvic.seng330.assn3.models.HubRegistrationException;
 import ca.uvic.seng330.assn3.models.Status;
@@ -9,13 +12,11 @@ import ca.uvic.seng330.assn3.models.Status;
 public class Camera extends Device{
   private boolean isRecording;
   private int diskSize;
-  private Hub hub;
 
   public Camera(Hub hub) throws HubRegistrationException{
     setIdentifier(UUID.randomUUID());
-    this.hub = hub;
-    hub.register(this);
     setStatus(Status.INACTIVE);
+    setHub(hub);
     hub.alert(this, String.format("Camera %s registered", this.getIdentifier().toString()));
   }
 
@@ -29,10 +30,10 @@ public class Camera extends Device{
     }
     if (isRecording) {
       isRecording = false;
-      hub.alert(this, "Recording");
+      getHub().alert(this, "Recording");
     } else {
       isRecording = true;
-      hub.alert(this, "Not Recording");
+      getHub().alert(this, "Not Recording");
     }
   }
 }

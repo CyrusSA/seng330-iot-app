@@ -63,7 +63,7 @@ set CMD_LINE_ARGS=%*
 :execute
 @rem Setup the command line
 
-set CLASSPATH=%APP_HOME%\lib\assn3-partner-wanted-1.0-SNAPSHOT.jar;%APP_HOME%\lib\json-20180813.jar;%APP_HOME%\lib\slf4j-simple-1.7.25.jar;%APP_HOME%\lib\gson-2.8.5.jar;%APP_HOME%\lib\slf4j-api-1.7.25.jar
+set CLASSPATH=%APP_HOME%\lib\assn3-partner-wanted-1.0-SNAPSHOT.jar;%APP_HOME%\lib\json-20180813.jar;%APP_HOME%\lib\slf4j-simple-1.7.25.jar;%APP_HOME%\lib\flexjson-2.0.jar;%APP_HOME%\lib\gson-2.8.5.jar;%APP_HOME%\lib\commons-io-2.4.jar;%APP_HOME%\lib\jackson-databind-2.9.7.jar;%APP_HOME%\lib\slf4j-api-1.7.25.jar;%APP_HOME%\lib\jackson-annotations-2.9.0.jar;%APP_HOME%\lib\jackson-core-2.9.7.jar
 
 @rem Execute assn3-partner-wanted
 "%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %ASSN3_PARTNER_WANTED_OPTS%  -classpath "%CLASSPATH%" ca.uvic.seng330.assn3.Main %CMD_LINE_ARGS%

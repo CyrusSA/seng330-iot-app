@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.UUID;
 
 public class DesktopClient implements Client {
-  private ArrayList<User> users;
+  public ArrayList<User> users;
   private final UUID uuid;
 
   public DesktopClient(){

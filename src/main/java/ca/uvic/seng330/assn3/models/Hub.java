@@ -10,10 +10,14 @@ import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+
+
 import ca.uvic.seng330.assn3.models.devices.*;
 
 public class Hub {
+
   private HashMap<UUID, Device> devices;
+	
   private HashMap<UUID, Client> clients;
 
   public Hub() {
@@ -68,7 +72,7 @@ public class Hub {
    * @param Client c - Client to be registered
    * @see ca.uvic.seng330.assn2.part1.Mediator#register(ca.uvic.seng330.assn2.part1.Client)
    */
-  public void register(Client c) throws HubRegistrationException {
+  public void register(Client c, boolean logIt) throws HubRegistrationException {
     if (clients.containsKey(c.getIdentifier())) {
       throw new HubRegistrationException("Client already registered");
     } else {
@@ -117,5 +121,13 @@ public class Hub {
    */
   public HashMap<UUID, Device> getDevices() {
     return devices;
+  }
+  
+  public void setDevices(HashMap<UUID, Device> devices) {
+	  this.devices = devices;
+  }
+  
+  public void setClients(HashMap<UUID, Client> clients) {
+	  this.clients = clients;
   }
 }

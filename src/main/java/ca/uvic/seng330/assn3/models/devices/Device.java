@@ -2,11 +2,13 @@ package ca.uvic.seng330.assn3.models.devices;
 
 import java.util.UUID;
 
+import ca.uvic.seng330.assn3.models.Hub;
 import ca.uvic.seng330.assn3.models.Status;
 
 public abstract class Device{
   private UUID uuid;
   private Status status;
+  private transient Hub hub;
 
   /*
    * Returns the Device identifier
@@ -43,4 +45,11 @@ public abstract class Device{
   public void setStatus(Status status) {
     this.status = status;
   }
+  
+  public void setHub(Hub hub) {
+	    this.hub = hub;
+	  }
+  public Hub getHub() {
+	    return hub;
+	  }
 }
