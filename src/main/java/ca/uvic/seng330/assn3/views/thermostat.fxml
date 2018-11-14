@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.media.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="342.0" prefWidth="509.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+   <children>
+      <Button layoutX="54.0" layoutY="220.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="98.0" text="Start" textAlignment="CENTER" />
+      <TextArea layoutX="152.0" layoutY="55.0" prefHeight="60.0" prefWidth="205.0" text="data of current temperature" />
+      <Button layoutX="357.0" layoutY="220.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="98.0" text="Turn Off" textAlignment="CENTER" />
+      <Button layoutX="226.0" layoutY="135.0" mnemonicParsing="false" text="metric" textAlignment="CENTER" />
+      <Text layoutX="189.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Thermostat" textAlignment="CENTER">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <Button layoutX="377.0" layoutY="55.0" mnemonicParsing="false" text="+" />
+      <Button layoutX="378.0" layoutY="88.0" mnemonicParsing="false" text="-" />
+   </children>
+</AnchorPane>
