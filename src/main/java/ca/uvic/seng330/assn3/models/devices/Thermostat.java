@@ -15,7 +15,6 @@ public class Thermostat extends Device{
     setIdentifier(UUID.randomUUID());
     setStatus(Status.INACTIVE);
     this.hub = hub;
-    hub.register(this);
     hub.alert(this, String.format("Thermostat %s registered", this.getIdentifier().toString()));
   }
 
