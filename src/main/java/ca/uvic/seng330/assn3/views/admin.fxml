@@ -6,10 +6,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane prefHeight="645.0" prefWidth="529.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="ca.uvic.seng330.assn3.controllers.AdminController">
    <children>
-      <TableView layoutX="53.0" layoutY="80.0" prefHeight="186.0" prefWidth="200.0">
+      <TableView layoutX="75.0" layoutY="68.0" prefHeight="208.0" prefWidth="356.0">
         <columns>
           <TableColumn prefWidth="75.0" text="Activities" />
           <TableColumn prefWidth="75.0" text="Type" />
@@ -18,10 +17,10 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <TableView layoutX="53.0" layoutY="307.0" prefHeight="200.0" prefWidth="200.0" tableMenuButtonVisible="true">
+      <TableView layoutX="75.0" layoutY="287.0" prefHeight="219.0" prefWidth="356.0" tableMenuButtonVisible="true">
         <columns>
-          <TableColumn prefWidth="75.0" text="Device" />
-          <TableColumn prefWidth="75.0" text="Status" />
+          <TableColumn prefWidth="159.0" text="Device" />
+          <TableColumn minWidth="0.0" prefWidth="124.0" text="Status" />
         </columns>
       </TableView>
       <Text layoutX="142.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome Back Admin!" wrappingWidth="314.3828125">
@@ -29,6 +28,8 @@
             <Font size="24.0" />
          </font>
       </Text>
-      <Button layoutX="53.0" layoutY="518.0" mnemonicParsing="false" text="Add Device" />
+      <Button layoutX="75.0" layoutY="519.0" mnemonicParsing="false" text="Add Device" />
+      <Button layoutX="318.0" layoutY="519.0" mnemonicParsing="false" text="Remove Device" />
+      <Button layoutX="427.0" layoutY="586.0" mnemonicParsing="false" text="Shutdown" />
    </children>
 </AnchorPane>
