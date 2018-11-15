@@ -10,11 +10,11 @@
    <center>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField alignment="CENTER" promptText="Username" fx:id="usernameField">
+            <TextField fx:id="usernameField" alignment="CENTER" promptText="Username">
                <VBox.margin>
                   <Insets bottom="10.0" left="200.0" right="200.0" top="10.0" />
                </VBox.margin></TextField>
-            <PasswordField alignment="CENTER" promptText="Password" fx:id="passwordField">
+            <PasswordField fx:id="passwordField" alignment="CENTER" promptText="Password">
                <VBox.margin>
                   <Insets bottom="10.0" left="200.0" right="200.0" top="10.0" />
                </VBox.margin></PasswordField>

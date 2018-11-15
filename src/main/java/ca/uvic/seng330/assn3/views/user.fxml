@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane prefHeight="404.0" prefWidth="430.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="ca.uvic.seng330.assn3">
+<AnchorPane prefHeight="404.0" prefWidth="430.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="ca.uvic.seng330.assn3.controllers.UserController">
    <children>
       <MenuButton layoutX="26.0" layoutY="131.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="194.0" text="Camera" textAlignment="CENTER">
         <items>
