@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.uvic.seng330.assn3.controllers.AdminController">
+<AnchorPane prefHeight="900.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.uvic.seng330.assn3.controllers.AdminController">
    <children>
       <TableView layoutX="53.0" layoutY="80.0" prefHeight="186.0" prefWidth="622.0">
         <columns>
@@ -51,5 +51,7 @@
       </TableView>
       <Button layoutX="174.0" layoutY="510.0" mnemonicParsing="false" text="Remove Device" />
       <Button layoutX="327.0" layoutY="510.0" mnemonicParsing="false" text="Shutdown" />
+      <Button fx:id="addUserButton" layoutX="66.0" layoutY="776.0" mnemonicParsing="false" onAction="#addUser" text="Add User" />
+      <Button fx:id="deleteUserButton" layoutX="173.0" layoutY="776.0" mnemonicParsing="false" onAction="#deleteUser" text="Delete User" />
    </children>
 </AnchorPane>

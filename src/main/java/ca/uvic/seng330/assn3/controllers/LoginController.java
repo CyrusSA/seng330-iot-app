@@ -51,7 +51,7 @@ public class LoginController implements Initializable{
       Parent root = loader.load();
       Stage stage = (Stage) loginButton.getScene().getWindow();
       stage.setTitle("IoT DesktopClient");
-      Scene scene1 = new Scene(root, 800, 800);
+      Scene scene1 = new Scene(root, 800, 850);
       stage.setScene(scene1);
       stage.show();
     }
