@@ -9,8 +9,9 @@ import java.util.UUID;
 public class DesktopClient implements Client {
   public ArrayList<User> users;
   private final UUID uuid;
+  private User current;
 
-  public DesktopClient(){
+  public DesktopClient() {
     uuid = UUID.randomUUID();
     users = new ArrayList<User>();
   }
@@ -49,14 +50,19 @@ public class DesktopClient implements Client {
     for (User u : users) {
       if (u.getUsername().equals(username)) {
         if (u.getPassword().equals(password)) {
+          current = u;
           return u;
         }
       }
     }
     return null;
   }
+
+  public ArrayList<User> getUsers() {
+    return users;
+  }
   
-  public ArrayList<User> getUsers(){
-	  return users;
+  public User getCurrent() {
+	  return current;
   }
 }

@@ -15,8 +15,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.text.Text;
 
 public class AdminController implements Initializable{
+	@FXML Text title;
 	@FXML TableView<User> table;
 	@FXML TableColumn<User, String> nameColumn;
 	@FXML TableColumn<User, String> usernameColumn;
@@ -25,6 +27,8 @@ public class AdminController implements Initializable{
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 		DesktopClient c = ClientInstance.getClientInstance();
+		
+		title.setText(c.getCurrent().getName()+"'s Dashboard");
 		
 		nameColumn.setCellValueFactory(new PropertyValueFactory<User, String>("name"));
 		usernameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));

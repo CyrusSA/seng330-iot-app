@@ -26,7 +26,7 @@
             <TableColumn prefWidth="146.66665649414062" text="Manage" />
         </columns>
       </TableView>
-      <Text layoutX="48.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="314.3828125">
+      <Text fx:id="title" layoutX="48.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="314.3828125">
          <font>
             <Font size="24.0" />
          </font>
@@ -49,5 +49,7 @@
           <TableColumn fx:id="adminColumn" prefWidth="78.0" text="Admin" />
         </columns>
       </TableView>
+      <Button layoutX="174.0" layoutY="510.0" mnemonicParsing="false" text="Remove Device" />
+      <Button layoutX="327.0" layoutY="510.0" mnemonicParsing="false" text="Shutdown" />
    </children>
 </AnchorPane>
