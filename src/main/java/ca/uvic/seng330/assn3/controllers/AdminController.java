@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import ca.uvic.seng330.assn3.models.devices.*;
 import ca.uvic.seng330.assn3.ClientInstance;
 import ca.uvic.seng330.assn3.models.DesktopClient;
 import ca.uvic.seng330.assn3.models.User;
@@ -35,6 +36,10 @@ public class AdminController implements Initializable{
 	
 	@FXML private Button addUserButton;
 	@FXML private Button deletUserButton;
+	@FXML private Button camera_button;
+	@FXML private Button lightbulb_button;
+	@FXML private Button smartplug_button;
+	@FXML private Button thermostat_button;
 	
 	private DesktopClient c;
 	
