@@ -3,8 +3,9 @@ package ca.uvic.seng330.assn3;
 import javafx.application.Application;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
-
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.UUID;
@@ -23,19 +24,12 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
   public static void main(String[] args) throws IOException, HubRegistrationException {
-    // Code to write Client to file
-    //	DesktopClient c = new DesktopClient();
-    //	User u = new User("admin", "password", "Admin", true);
-    //	User u1 = new User("user1", "password", "User1", false);
-    //	c.registerUser(u);
-    //	c.registerUser(u1);
-    //	FileUtils.writeStringToFile(new File("client.json"), gson.toJson(c));
-
     Hub h = new Hub();
     readDevices(h);
     DesktopClient c = readClient(h);
     ClientInstance.setClientInstance(c);
-
+    HubInstance.setHubInstance(h);
+    
     launch(args);
   }
 
@@ -48,26 +42,23 @@ public class Main extends Application {
     primaryStage.show();
   }
 
-  // Code to write devices to file
+  @Override //Saves data when application closes
+  public void stop() throws HubRegistrationException, IOException {
+    writeDevices(HubInstance.getHubInstance());
+    writeClient(ClientInstance.getClientInstance());
+  }
+
   public static void writeDevices(Hub h) throws HubRegistrationException, IOException {
-    Device c = new Camera(h);
-    Device c1 = new Camera(h);
+    clearFile("devices.json");
     Gson gson = new Gson();
     ArrayList<String> objects = new ArrayList<String>();
-    objects.add(gson.toJson(c) + "\n");
-    objects.add(gson.toJson(c1) + "\n");
-    FileUtils.writeLines(new File("devices.json"), objects);
-    ArrayList<String> objects2 = (ArrayList<String>) FileUtils.readLines(new File("devices.json"));
-    // System.out.println(objects2.get(0).toString());
-    for (String s : objects2) {
-      if (s.isEmpty()) continue;
-      Device c2 = gson.fromJson(s, Camera.class);
-      System.out.println(c2.getIdentifier().toString());
+    for (Device d : h.getDevices().values()) {
+      objects.add(gson.toJson(d) + "\n");
     }
+    FileUtils.writeLines(new File("devices.json"), objects);
   }
 
   public static void readDevices(Hub h) throws IOException {
-
     Gson gson = new Gson();
     ArrayList<String> objects2 = (ArrayList<String>) FileUtils.readLines(new File("devices.json"));
     HashMap<UUID, Device> devices = new HashMap<UUID, Device>();
@@ -81,6 +72,12 @@ public class Main extends Application {
     h.setDevices(devices);
   }
 
+  public static void writeClient(DesktopClient c) throws IOException {
+	 clearFile("client.json");
+    Gson gson = new Gson();
+    FileUtils.writeStringToFile(new File("client.json"), gson.toJson(c));
+  }
+
   public static DesktopClient readClient(Hub h) throws IOException {
     Gson gson = new Gson();
     DesktopClient c =
@@ -91,5 +88,14 @@ public class Main extends Application {
     h.setClients(clients);
 
     return c;
+  }
+
+  public static void clearFile(String filename) {
+    try {
+      PrintWriter writer = new PrintWriter(new File(filename));
+      writer.write("");
+      writer.close();
+    } catch (FileNotFoundException e) {
+    }
   }
 }

@@ -1,1 +1,1 @@
-{"users":[{"username":"admin","password":"password","name":"Admin","admin":true},{"username":"user1","password":"password","name":"User1","admin":false}],"uuid":"3c659553-2118-4095-b621-09f045876d44"}
+{"users":[{"username":"admin","password":"password","name":"Admin","admin":true},{"username":"cyrus","password":"password","name":"Cyrus","admin":false},{"username":"july","password":"password","name":"July","admin":false}],"uuid":"5bce2f85-0357-4819-a1fc-56b333604b14"}

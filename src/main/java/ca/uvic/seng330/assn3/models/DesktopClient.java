@@ -55,4 +55,8 @@ public class DesktopClient implements Client {
     }
     return null;
   }
+  
+  public ArrayList<User> getUsers(){
+	  return users;
+  }
 }

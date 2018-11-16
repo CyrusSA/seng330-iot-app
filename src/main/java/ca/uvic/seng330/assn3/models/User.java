@@ -24,6 +24,13 @@ public class User {
 		return admin;
 	}
 	
+	public String getAdmin() {
+		if(admin) {
+			return "Yes";
+		}
+		return "No";
+	}
+	
 	public String getUsername() {
 		return username;
 	}

@@ -6,10 +6,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane prefHeight="645.0" prefWidth="529.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="ca.uvic.seng330.assn3.controllers.AdminController">
+<AnchorPane prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.uvic.seng330.assn3.controllers.AdminController">
    <children>
-      <TableView layoutX="53.0" layoutY="80.0" prefHeight="186.0" prefWidth="200.0">
+      <TableView layoutX="53.0" layoutY="80.0" prefHeight="186.0" prefWidth="622.0">
         <columns>
           <TableColumn prefWidth="75.0" text="Activities" />
           <TableColumn prefWidth="75.0" text="Type" />
@@ -18,17 +17,37 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <TableView layoutX="53.0" layoutY="307.0" prefHeight="200.0" prefWidth="200.0" tableMenuButtonVisible="true">
+      <TableView layoutX="53.0" layoutY="307.0" prefHeight="197.0" prefWidth="620.0" tableMenuButtonVisible="true">
         <columns>
-          <TableColumn prefWidth="75.0" text="Device" />
-          <TableColumn prefWidth="75.0" text="Status" />
+          <TableColumn prefWidth="162.6666717529297" text="Device" />
+          <TableColumn prefWidth="114.0" text="Type" />
+            <TableColumn prefWidth="101.0" text="Status" />
+            <TableColumn prefWidth="95.0" text="Users" />
+            <TableColumn prefWidth="146.66665649414062" text="Manage" />
         </columns>
       </TableView>
-      <Text layoutX="142.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome Back Admin!" wrappingWidth="314.3828125">
+      <Text layoutX="48.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="314.3828125">
          <font>
             <Font size="24.0" />
          </font>
       </Text>
-      <Button layoutX="53.0" layoutY="518.0" mnemonicParsing="false" text="Add Device" />
+      <Button layoutX="53.0" layoutY="510.0" mnemonicParsing="false" text="Add Device" />
+      <Text layoutX="53.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Log" wrappingWidth="314.3828125">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text layoutX="53.0" layoutY="302.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Device Interface" wrappingWidth="314.3828125">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <TableView fx:id="table" layoutX="50.0" layoutY="563.0" prefHeight="200.0" prefWidth="298.0">
+        <columns>
+          <TableColumn fx:id="nameColumn" prefWidth="113.0" text="User" />
+            <TableColumn fx:id="usernameColumn" prefWidth="105.0" text="Username" />
+          <TableColumn fx:id="adminColumn" prefWidth="78.0" text="Admin" />
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>
