@@ -8,7 +8,7 @@
 
 <AnchorPane prefHeight="900.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.uvic.seng330.assn3.controllers.AdminController">
    <children>
-      <TableView fx:id="logTable" layoutX="53.0" layoutY="80.0" prefHeight="186.0" prefWidth="622.0">
+      <TableView fx:id="logTable" layoutX="53.0" layoutY="80.0" prefHeight="186.0" prefWidth="520.0">
         <columns>
           <TableColumn fx:id="activitiesColumn" prefWidth="75.0" text="Activities" />
         </columns>
@@ -16,11 +16,11 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <TableView fx:id="deviceTable" layoutX="51.0" layoutY="341.0" prefHeight="197.0" prefWidth="430.0" tableMenuButtonVisible="true">
+      <TableView fx:id="deviceTable" layoutX="51.0" layoutY="341.0" prefHeight="197.0" prefWidth="520.0" tableMenuButtonVisible="true">
         <columns>
-          <TableColumn fx:id="deviceColumn" prefWidth="162.6666717529297" text="Device" />
-          <TableColumn fx:id="typeColumn" prefWidth="114.0" text="Type" />
-            <TableColumn fx:id="statusColumn" prefWidth="143.0" text="Status" />
+          <TableColumn fx:id="deviceColumn" prefWidth="230.0" text="Device" />
+          <TableColumn fx:id="typeColumn" prefWidth="130.0" text="Type" />
+            <TableColumn fx:id="statusColumn" prefWidth="155.0" text="Status" />
         </columns>
       </TableView>
       <Text fx:id="title" layoutX="48.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="314.3828125">
@@ -39,15 +39,15 @@
             <Font size="14.0" />
          </font>
       </Text>
-      <TableView fx:id="userTable" layoutX="48.0" layoutY="597.0" prefHeight="200.0" prefWidth="298.0">
+      <TableView fx:id="userTable" layoutX="48.0" layoutY="597.0" prefHeight="200.0" prefWidth="526.0">
         <columns>
-          <TableColumn fx:id="nameColumn" prefWidth="113.0" text="User" />
-            <TableColumn fx:id="usernameColumn" prefWidth="105.0" text="Username" />
-          <TableColumn fx:id="adminColumn" prefWidth="78.0" text="Admin" />
+          <TableColumn fx:id="nameColumn" prefWidth="199.0" text="User" />
+            <TableColumn fx:id="usernameColumn" prefWidth="190.0" text="Username" />
+          <TableColumn fx:id="adminColumn" prefWidth="130.0" text="Admin" />
         </columns>
       </TableView>
       <Button fx:id="deleteDeviceButton" layoutX="172.0" layoutY="544.0" mnemonicParsing="false" onAction="#deleteDevice" text="Remove Device" />
-      <Button layoutX="325.0" layoutY="544.0" mnemonicParsing="false" text="Shutdown" />
+      <Button fx:id="launchButton" layoutX="313.0" layoutY="544.0" mnemonicParsing="false" onAction="#launchDevice" text="Launch Selected Device" />
       <Button fx:id="addUserButton" layoutX="64.0" layoutY="810.0" mnemonicParsing="false" onAction="#addUser" text="Add User" />
       <Button fx:id="deleteUserButton" layoutX="171.0" layoutY="810.0" mnemonicParsing="false" onAction="#deleteUser" text="Delete User" />
       <Button fx:id="clearLogButton" layoutX="53.0" layoutY="275.0" mnemonicParsing="false" onAction="#clearLog" text="Clear Log" />

@@ -15,19 +15,18 @@ public class Lightbulb extends Device{
     setHub(hub);
     setName(name);
     setType("Lightbulb");
-    hub.alert(this, String.format("Lightbulb %s registered", this.getName()));
   }
 
   /*
    * Switches on or switches off the lightbulb
    */
   public void toggle() {
+	  setStatus(Status.FUNCTIONING);
     if (state) {
       state = false;
-      getHub().alert(this, "Lightbulb off");
     } else {
       state = true;
-      getHub().alert(this, "Lightbulb on");
+      //this.getHub().log("Lightbulb on");
     }
   }
 
@@ -35,7 +34,7 @@ public class Lightbulb extends Device{
    * Return the state of the bulb
    * @return boolean state
    */
-  public boolean getCondition() {
+  public boolean getState() {
     return state;
   }
 }

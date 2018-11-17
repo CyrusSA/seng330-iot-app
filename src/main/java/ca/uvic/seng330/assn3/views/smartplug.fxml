@@ -6,14 +6,18 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane prefHeight="188.0" prefWidth="320.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+<AnchorPane prefHeight="188.0" prefWidth="320.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.uvic.seng330.assn3.controllers.SmartPlugController">
    <children>
       <Text layoutX="101.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SmartPlug">
          <font>
             <Font size="24.0" />
          </font>
       </Text>
-      <ToggleButton layoutX="109.0" layoutY="81.0" mnemonicParsing="false" text="ToggleButton" />
+      <Text fx:id="toggleInfo" layoutX="115.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="91.13671875">
+         <font>
+            <Font size="32.0" />
+         </font>
+      </Text>
+      <ToggleButton fx:id="toggleButton" layoutX="134.0" layoutY="130.0" mnemonicParsing="false" onAction="#toggle" text="Toggle" />
    </children>
 </AnchorPane>

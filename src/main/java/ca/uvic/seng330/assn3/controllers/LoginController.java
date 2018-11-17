@@ -36,6 +36,8 @@ public class LoginController implements Initializable{
     String password = passwordField.getText();
     User user = c.validateUser(username, password);
     FXMLLoader loader = null;
+    int width = 0;
+    int height = 0;
 
     if (username.isEmpty() || password.isEmpty()) {
       ControllerMethods.errorAlert("Please enter both username and password");
@@ -44,14 +46,18 @@ public class LoginController implements Initializable{
     } else { // authenticated
       if (user.isAdmin()) {
         loader = new FXMLLoader(getClass().getResource("..\\views\\admin.fxml"));
+        width = 600;
+        height = 850;
       } else {
     	  loader = new FXMLLoader(getClass().getResource("..\\views\\user.fxml"));
+    	  width = 600;
+    	  height = 400;
       }
 
       Parent root = loader.load();
       Stage stage = (Stage) loginButton.getScene().getWindow();
       stage.setTitle("IoT DesktopClient");
-      Scene scene1 = new Scene(root, 800, 850);
+      Scene scene1 = new Scene(root, width, height);
       stage.setScene(scene1);
       stage.show();
     }

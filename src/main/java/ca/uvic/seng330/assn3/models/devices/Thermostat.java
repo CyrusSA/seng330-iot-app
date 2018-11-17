@@ -16,7 +16,6 @@ public class Thermostat extends Device{
     setHub(hub);
     setName(name);
     setType("Thermostat");
-    hub.alert(this, String.format("Thermostat %s registered", this.getName()));
   }
 
   /*
@@ -26,9 +25,13 @@ public class Thermostat extends Device{
    */
   public void setTemp(Temperature newTemp) throws Temperature.TemperatureOutofBoundsException {
     if (newTemp.getTemperature() > 100) {
-      throw new Temperature().new TemperatureOutofBoundsException("Temperature out of bounds.");
+      throw temperature.new TemperatureOutofBoundsException("Temperature out of bounds.");
     }
     temperature = newTemp;
     getHub().alert(this, String.format("New temperature is %f", temperature.getTemperature()));
+  }
+  
+  public Temperature getTemp() {
+	  return temperature;
   }
 }

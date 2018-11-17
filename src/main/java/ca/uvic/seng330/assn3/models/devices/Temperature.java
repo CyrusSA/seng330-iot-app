@@ -16,10 +16,6 @@ public class Temperature {
   private double temperature;
   private Unit unit;
 
-  public Temperature() {
-    // TODO Auto-generated constructor stub
-  }
-
   public Temperature(double temp, Unit unit) {
     temperature = temp;
     this.unit = unit;
@@ -32,5 +28,9 @@ public class Temperature {
 
   public double getTemperature() {
     return temperature;
+  }
+  
+  public Unit getUnit() {
+	  return unit;
   }
 }

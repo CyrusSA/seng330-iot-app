@@ -7,19 +7,24 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane prefHeight="342.0" prefWidth="509.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+<AnchorPane prefHeight="342.0" prefWidth="509.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.uvic.seng330.assn3.controllers.ThermostatController">
    <children>
-      <Button layoutX="54.0" layoutY="220.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="98.0" text="Start" textAlignment="CENTER" />
-      <TextArea layoutX="152.0" layoutY="55.0" prefHeight="60.0" prefWidth="205.0" text="data of current temperature" />
-      <Button layoutX="357.0" layoutY="220.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="98.0" text="Turn Off" textAlignment="CENTER" />
-      <Button layoutX="226.0" layoutY="135.0" mnemonicParsing="false" text="metric" textAlignment="CENTER" />
+      <Button fx:id="startButton" layoutX="54.0" layoutY="260.0" mnemonicParsing="false" onAction="#start" prefHeight="28.0" prefWidth="98.0" text="Start" textAlignment="CENTER" />
+      <Button fx:id="turnOffButton" layoutX="353.0" layoutY="260.0" mnemonicParsing="false" onAction="#turnOff" prefHeight="28.0" prefWidth="98.0" text="Turn Off" textAlignment="CENTER" />
+      <Button fx:id="celsiusButton" layoutX="173.0" layoutY="134.0" mnemonicParsing="false" onAction="#toCelsius" text="Celsius" textAlignment="CENTER" />
       <Text layoutX="189.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Thermostat" textAlignment="CENTER">
          <font>
             <Font size="24.0" />
          </font>
       </Text>
-      <Button layoutX="377.0" layoutY="55.0" mnemonicParsing="false" text="+" />
-      <Button layoutX="378.0" layoutY="88.0" mnemonicParsing="false" text="-" />
+      <Text fx:id="tempField" layoutX="83.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="333.0">
+         <font>
+            <Font size="33.0" />
+         </font>
+      </Text>
+      <Button fx:id="fahrenheitButton" layoutX="255.0" layoutY="134.0" mnemonicParsing="false" onAction="#toFahrenheit" text="Farhenheit" />
+      <TextField fx:id="newTempField" layoutX="29.0" layoutY="191.0" promptText="Temperature" />
+      <Button fx:id="setTempButton" layoutX="309.0" layoutY="191.0" mnemonicParsing="false" onAction="#setTemp" text="Set Temperature" />
+      <ChoiceBox fx:id="unitChoiceBox" layoutX="189.0" layoutY="191.0" prefHeight="25.0" prefWidth="104.0" />
    </children>
 </AnchorPane>

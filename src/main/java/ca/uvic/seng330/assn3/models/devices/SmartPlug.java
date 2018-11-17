@@ -7,6 +7,7 @@ import ca.uvic.seng330.assn3.models.HubRegistrationException;
 import ca.uvic.seng330.assn3.models.Status;
 
 public class SmartPlug extends Device{
+	private boolean state;
 
   public SmartPlug(Hub hub, String name) throws HubRegistrationException{
     setIdentifier(UUID.randomUUID());
@@ -14,6 +15,26 @@ public class SmartPlug extends Device{
     setHub(hub);
     setName(name);
     setType("SmartPlug");
-    hub.alert(this, String.format("SmartPlug %s registered", this.getName()));
+  }
+  
+  /*
+   * Switches on or switches off the smartplug
+   */
+  public void toggle() {
+	  setStatus(Status.FUNCTIONING);
+    if (state) {
+      state = false;
+    } else {
+      state = true;
+      //this.getHub().log("Smartplug on");
+    }
+  }
+
+  /*
+   * Return the state of the plug
+   * @return boolean state
+   */
+  public boolean getState() {
+    return state;
   }
 }
