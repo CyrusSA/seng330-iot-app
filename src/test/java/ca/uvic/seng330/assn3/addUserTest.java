@@ -19,9 +19,8 @@ import org.testfx.framework.junit.ApplicationTest;
 
 import ca.uvic.seng330.assn3.controllers.*;
 
-public class AdminTest extends ApplicationTest{
+public class addUserTest extends ApplicationTest{
 	private AddUserController adduser=new AddUserController();
-	private DeleteUserController deleteuser=new DeleteUserController();
 	
 	@Override
 	public void start (Stage stage) throws Exception {
@@ -45,6 +44,8 @@ public class AdminTest extends ApplicationTest{
 		assertThat(adduser.addUser(), is("User Added!"));
 		
 	}
+	
+	
 	  
 
 }
