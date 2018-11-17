@@ -12,6 +12,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.testfx.api.FxToolkit;
 import org.testfx.framework.junit.ApplicationTest;
+import org.junit.Assert.*;
 
 import ca.uvic.seng330.assn3.controllers.*;
 
@@ -41,8 +42,6 @@ public class MainTest extends ApplicationTest{
 		clickOn("#passwordField").write("passward");
 		clickOn("#loginButton");
 		assertThat(login.passwordField.getText(), is("passward"));
-		
-		
 	}
 	
 	@Test
@@ -52,17 +51,17 @@ public class MainTest extends ApplicationTest{
 		assertThat(login.usernameField.getText(), is("user"));
 	}
 	
-	/*@Test
+	@Test
 	public void wrong_passward() {
 		clickOn("#passwordField").write("pass");
 		clickOn("#loginButton");
-		//assertThat("Incorrect username or password");
+		assertThat(login.login(),is("Incorrect username or password"));
 	}
 	
 	@Test
 	public void wrong_username() {
 		clickOn("#usernameField").write("u");
 		clickOn("#loginButton");
-		//assertThat("Incorrect username or password");
-	}*/
+		assertThat(login.login(),is("Incorrect username or password"));
+	}
 }
