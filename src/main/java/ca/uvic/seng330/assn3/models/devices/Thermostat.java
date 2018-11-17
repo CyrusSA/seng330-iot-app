@@ -8,13 +8,14 @@ import ca.uvic.seng330.assn3.models.Status;
 
 public class Thermostat extends Device{
   private Temperature temperature;
-  private Hub hub;
 
-  public Thermostat(Hub hub) throws HubRegistrationException{
+  public Thermostat(Hub hub, String name) throws HubRegistrationException{
     temperature = new Temperature(37, Temperature.Unit.CELSIUS);
     setIdentifier(UUID.randomUUID());
-    setStatus(Status.INACTIVE);
-    this.hub = hub;
+    setStatus(Status.OFFLINE);
+    setHub(hub);
+    setName(name);
+    setType("Thermostat");
     hub.alert(this, String.format("Thermostat %s registered", this.getIdentifier().toString()));
   }
 
@@ -28,6 +29,6 @@ public class Thermostat extends Device{
       throw new Temperature().new TemperatureOutofBoundsException("Temperature out of bounds.");
     }
     temperature = newTemp;
-    hub.alert(this, String.format("New temperature is %f", temperature.getTemperature()));
+    getHub().alert(this, String.format("New temperature is %f", temperature.getTemperature()));
   }
 }

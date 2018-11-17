@@ -2,12 +2,16 @@ package ca.uvic.seng330.assn3.controllers;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
 import ca.uvic.seng330.assn3.ClientInstance;
+import ca.uvic.seng330.assn3.HubInstance;
 import ca.uvic.seng330.assn3.models.DesktopClient;
+import ca.uvic.seng330.assn3.models.Hub;
 import ca.uvic.seng330.assn3.models.User;
+import ca.uvic.seng330.assn3.models.devices.Device;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -28,27 +32,43 @@ public class AdminController implements Initializable{
 	
 	@FXML private Text title;
 	
-	@FXML private TableView<User> table;
+	@FXML private TableView<Device> deviceTable;
+	@FXML private TableColumn<Device, String> deviceColumn;
+	@FXML private TableColumn<Device, String> typeColumn;
+	@FXML private TableColumn<Device, String> statusColumn;
+	
+	@FXML private Button addDeviceButton;
+	@FXML private Button deleteDeviceButton;
+	
+	@FXML private TableView<User> userTable;
 	@FXML private TableColumn<User, String> nameColumn;
 	@FXML private TableColumn<User, String> usernameColumn;
 	@FXML private TableColumn<User, String> adminColumn;
 	
 	@FXML private Button addUserButton;
-	@FXML private Button deletUserButton;
+	@FXML private Button deleteUserButton;
 	
 	private DesktopClient c;
+	private Hub h;
 	
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 		c = ClientInstance.getClientInstance();
+		h = HubInstance.getHubInstance();
 		
 		title.setText(c.getCurrent().getName()+"'s Dashboard");
 		
 		nameColumn.setCellValueFactory(new PropertyValueFactory<User, String>("name"));
-		usernameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
-		adminColumn.setCellValueFactory(new PropertyValueFactory<>("admin"));
+		usernameColumn.setCellValueFactory(new PropertyValueFactory<User, String>("username"));
+		adminColumn.setCellValueFactory(new PropertyValueFactory<User, String>("admin"));
 		
-		table.setItems(getObservableUsers(c.getUsers()));
+		userTable.setItems(getObservableUsers(c.getUsers()));
+		
+		deviceColumn.setCellValueFactory(new PropertyValueFactory<Device, String>("name"));
+		typeColumn.setCellValueFactory(new PropertyValueFactory<Device, String>("type"));
+		statusColumn.setCellValueFactory(new PropertyValueFactory<Device, String>("status"));
+		
+		deviceTable.setItems(getObservableDevices(new ArrayList<Device>(h.getDevices().values())));
 		
 	}
 	
@@ -109,7 +129,68 @@ public class AdminController implements Initializable{
 		});
 	}
 	
+	@FXML
+	public void addDevice() throws IOException {
+		
+		Stage stage = new Stage();
+		stage.setTitle("IoT DesktopClient - Add Device");
+	    Parent root = FXMLLoader.load(getClass().getResource("..\\views\\add_device.fxml"));
+	    Scene scene = new Scene(root, 530, 330);
+	    stage.setScene(scene);
+	    stage.show();
+	    
+		stage.setOnCloseRequest(new EventHandler<WindowEvent>() { //refresh stage
+	          public void handle(WindowEvent we) {
+	        	  FXMLLoader loader = new FXMLLoader(getClass().getResource("..\\views\\admin.fxml"));
+	        	  Parent root = null;
+			        try {
+			          root = loader.load();
+			        } catch (IOException e) {
+			          // TODO Auto-generated catch block
+			        e.printStackTrace();
+			        }
+	              Stage stage = (Stage) title.getScene().getWindow();
+	              stage.setTitle("IoT DesktopClient");
+	              Scene scene1 = new Scene(root, 800, 850);
+	              stage.setScene(scene1);
+	              stage.show();
+	          }
+		});
+	}
+	
+	@FXML
+	public void deleteDevice() throws IOException {
+		Stage stage = new Stage();
+		stage.setTitle("IoT DesktopClient - Delete Device");
+	    Parent root = FXMLLoader.load(getClass().getResource("..\\views\\delete_device.fxml"));
+	    Scene scene = new Scene(root, 530, 330);
+	    stage.setScene(scene);
+	    stage.show();
+	    
+		stage.setOnCloseRequest(new EventHandler<WindowEvent>() { //refresh stage
+	          public void handle(WindowEvent we) {
+	        	  FXMLLoader loader = new FXMLLoader(getClass().getResource("..\\views\\admin.fxml"));
+	        	  Parent root = null;
+			        try {
+			          root = loader.load();
+			        } catch (IOException e) {
+			          // TODO Auto-generated catch block
+			        e.printStackTrace();
+			        }
+	              Stage stage = (Stage) title.getScene().getWindow();
+	              stage.setTitle("IoT DesktopClient");
+	              Scene scene1 = new Scene(root, 800, 850);
+	              stage.setScene(scene1);
+	              stage.show();
+	          }
+		});
+	}
+	
 	public ObservableList<User> getObservableUsers(List<User> users){
 		return FXCollections.observableArrayList(users);
+	}
+	
+	public ObservableList<Device> getObservableDevices(List<Device> devices){
+		return FXCollections.observableArrayList(devices);
 	}
 }

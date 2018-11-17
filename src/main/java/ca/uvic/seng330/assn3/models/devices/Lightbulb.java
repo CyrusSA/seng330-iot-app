@@ -8,12 +8,13 @@ import ca.uvic.seng330.assn3.models.Status;
 
 public class Lightbulb extends Device{
   private boolean state;
-  private Hub hub;
 
-  public Lightbulb(Hub hub) throws HubRegistrationException{
+  public Lightbulb(Hub hub, String name) throws HubRegistrationException{
     setIdentifier(UUID.randomUUID());
-    setStatus(Status.INACTIVE);
-    this.hub = hub;
+    setStatus(Status.OFFLINE);
+    setHub(hub);
+    setName(name);
+    setType("Lightbulb");
     hub.alert(this, String.format("Lightbulb %s registered", this.getIdentifier().toString()));
   }
 
@@ -23,10 +24,10 @@ public class Lightbulb extends Device{
   public void toggle() {
     if (state) {
       state = false;
-      hub.alert(this, "Lightbulb off");
+      getHub().alert(this, "Lightbulb off");
     } else {
       state = true;
-      hub.alert(this, "Lightbulb on");
+      getHub().alert(this, "Lightbulb on");
     }
   }
 

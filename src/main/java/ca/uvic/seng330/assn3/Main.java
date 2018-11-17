@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.UUID;
 
 import org.apache.commons.io.FileUtils;
+import org.json.JSONObject;
 
 import com.google.gson.Gson;
 
@@ -35,6 +36,12 @@ public class Main extends Application {
 
   @Override
   public void start(Stage primaryStage) throws Exception {
+//	  Hub h = new Hub();
+//	  h.register(new Camera(h, "Main Camera"));
+//	  h.register(new Thermostat(h, "Main Thermostat"));
+//	  h.register(new SmartPlug(h, "Main SmartPlug"));
+//	  writeDevices(h);
+//	  HubInstance.setHubInstance(h);
     primaryStage.setTitle("IoT DesktopClient - Login");
     Parent root = FXMLLoader.load(getClass().getResource("\\views\\login.fxml"));
     Scene scene = new Scene(root, 600, 400);
@@ -53,6 +60,7 @@ public class Main extends Application {
     Gson gson = new Gson();
     ArrayList<String> objects = new ArrayList<String>();
     for (Device d : h.getDevices().values()) {
+    	//System.out.println(d.getType());
       objects.add(gson.toJson(d) + "\n");
     }
     FileUtils.writeLines(new File("devices.json"), objects);
@@ -65,7 +73,17 @@ public class Main extends Application {
 
     for (String s : objects2) {
       if (s.isEmpty()) continue;
-      Device d = gson.fromJson(s, Camera.class);
+      JSONObject json = new JSONObject(s);
+      Device d = null;
+      if(json.get("type").equals("Camera")) {
+    	  d = gson.fromJson(s, Camera.class);
+      } else if(json.get("type").equals("Lightbulb")) {
+    	  d = gson.fromJson(s, Lightbulb.class);
+      } else if(json.get("type").equals("SmartPlug")) {
+    	  d = gson.fromJson(s, SmartPlug.class);
+      } else {
+    	  d = gson.fromJson(s, Thermostat.class);
+      }
       devices.put(d.getIdentifier(), d);
     }
 

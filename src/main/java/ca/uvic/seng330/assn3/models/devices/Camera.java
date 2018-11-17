@@ -13,10 +13,12 @@ public class Camera extends Device{
   private boolean isRecording;
   private int diskSize;
 
-  public Camera(Hub hub) throws HubRegistrationException{
+  public Camera(Hub hub, String name) throws HubRegistrationException{
     setIdentifier(UUID.randomUUID());
-    setStatus(Status.INACTIVE);
+    setStatus(Status.OFFLINE);
     setHub(hub);
+    setName(name);
+    setType("Camera");
     hub.alert(this, String.format("Camera %s registered", this.getIdentifier().toString()));
   }
 

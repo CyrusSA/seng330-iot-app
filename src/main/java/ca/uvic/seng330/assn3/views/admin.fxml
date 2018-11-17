@@ -17,13 +17,11 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <TableView layoutX="53.0" layoutY="307.0" prefHeight="197.0" prefWidth="620.0" tableMenuButtonVisible="true">
+      <TableView fx:id="deviceTable" layoutX="53.0" layoutY="307.0" prefHeight="197.0" prefWidth="430.0" tableMenuButtonVisible="true">
         <columns>
-          <TableColumn prefWidth="162.6666717529297" text="Device" />
-          <TableColumn prefWidth="114.0" text="Type" />
-            <TableColumn prefWidth="101.0" text="Status" />
-            <TableColumn prefWidth="95.0" text="Users" />
-            <TableColumn prefWidth="146.66665649414062" text="Manage" />
+          <TableColumn fx:id="deviceColumn" prefWidth="162.6666717529297" text="Device" />
+          <TableColumn fx:id="typeColumn" prefWidth="114.0" text="Type" />
+            <TableColumn fx:id="statusColumn" prefWidth="143.0" text="Status" />
         </columns>
       </TableView>
       <Text fx:id="title" layoutX="48.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="314.3828125">
@@ -42,7 +40,7 @@
             <Font size="14.0" />
          </font>
       </Text>
-      <TableView fx:id="table" layoutX="50.0" layoutY="563.0" prefHeight="200.0" prefWidth="298.0">
+      <TableView fx:id="userTable" layoutX="50.0" layoutY="563.0" prefHeight="200.0" prefWidth="298.0">
         <columns>
           <TableColumn fx:id="nameColumn" prefWidth="113.0" text="User" />
             <TableColumn fx:id="usernameColumn" prefWidth="105.0" text="Username" />

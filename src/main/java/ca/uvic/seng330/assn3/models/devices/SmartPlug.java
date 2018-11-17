@@ -7,12 +7,13 @@ import ca.uvic.seng330.assn3.models.HubRegistrationException;
 import ca.uvic.seng330.assn3.models.Status;
 
 public class SmartPlug extends Device{
-  private Hub hub;
 
-  public SmartPlug(Hub hub) throws HubRegistrationException{
+  public SmartPlug(Hub hub, String name) throws HubRegistrationException{
     setIdentifier(UUID.randomUUID());
-    setStatus(Status.INACTIVE);
-    this.hub = hub;
+    setStatus(Status.OFFLINE);
+    setHub(hub);
+    setName(name);
+    setType("SmartPlug");
     hub.alert(this, String.format("SmartPlug %s registered", this.getIdentifier().toString()));
   }
 }

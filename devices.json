@@ -1,0 +1,6 @@
+{"temperature":{"temperature":37.0,"unit":"CELSIUS"},"uuid":"d6133ed8-fd5b-4725-a6d2-7133effea0ef","status":"OFFLINE","name":"Main Thermostat","type":"Thermostat"}
+
+{"isRecording":false,"diskSize":0,"uuid":"ef4e0d52-0b8f-42e8-a259-db01babdd605","status":"OFFLINE","name":"Main Camera","type":"Camera"}
+
+{"uuid":"039c50b5-a096-48f0-bd45-171a77b0cadb","status":"OFFLINE","name":"Main SmartPlug","type":"SmartPlug"}
+
