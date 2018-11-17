@@ -1,23 +1,26 @@
 package ca.uvic.seng330.assn3.models;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import java.util.UUID;
 
+import org.apache.commons.io.FileUtils;
 import org.json.JSONObject;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
-
+import ca.uvic.seng330.assn3.HubInstance;
 import ca.uvic.seng330.assn3.models.devices.*;
 
 public class Hub {
 
   private HashMap<UUID, Device> devices;
-	
+
   private HashMap<UUID, Client> clients;
 
   public Hub() {
@@ -34,6 +37,7 @@ public class Hub {
     for (Client client : clients.values()) {
       client.notify(json);
     }
+    this.log(message);
   }
 
   /*
@@ -65,6 +69,7 @@ public class Hub {
     } else {
       devices.put(d.getIdentifier(), d);
     }
+    this.alert(d, String.format("%s %s(UUID: %s) registered", d.getName(), d.getType(), d.getIdentifier().toString()));
   }
 
   /*
@@ -90,6 +95,7 @@ public class Hub {
       throw new HubRegistrationException("Device not found");
     }
     devices.remove(d.getIdentifier());
+    this.alert(d, String.format("%s %s(UUID: %s) unregistered", d.getName(), d.getType(), d.getIdentifier().toString()));
   }
 
   /*
@@ -110,8 +116,14 @@ public class Hub {
    * @see ca.uvic.seng330.assn2.part1.Mediator#log(java.lang.String)
    */
   public void log(String message) {
-    Logger logger = LoggerFactory.getLogger(Hub.class);
-    logger.info(message);
+    ArrayList<String> logs = null;
+    try {
+      logs = (ArrayList<String>) FileUtils.readLines(new File("log.txt"));
+      logs.add(message);
+      FileUtils.writeLines(new File("log.txt"), logs);
+    } catch (IOException e) {
+    }
+    HubInstance.setHubInstance(this);
   }
 
   /*
@@ -122,12 +134,12 @@ public class Hub {
   public HashMap<UUID, Device> getDevices() {
     return devices;
   }
-  
+
   public void setDevices(HashMap<UUID, Device> devices) {
-	  this.devices = devices;
+    this.devices = devices;
   }
-  
+
   public void setClients(HashMap<UUID, Client> clients) {
-	  this.clients = clients;
+    this.clients = clients;
   }
 }

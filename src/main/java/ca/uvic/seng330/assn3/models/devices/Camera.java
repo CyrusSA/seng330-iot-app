@@ -19,7 +19,6 @@ public class Camera extends Device{
     setHub(hub);
     setName(name);
     setType("Camera");
-    hub.alert(this, String.format("Camera %s registered", this.getIdentifier().toString()));
   }
 
   /*

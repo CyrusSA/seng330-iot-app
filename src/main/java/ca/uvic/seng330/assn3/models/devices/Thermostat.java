@@ -16,7 +16,7 @@ public class Thermostat extends Device{
     setHub(hub);
     setName(name);
     setType("Thermostat");
-    hub.alert(this, String.format("Thermostat %s registered", this.getIdentifier().toString()));
+    hub.alert(this, String.format("Thermostat %s registered", this.getName()));
   }
 
   /*

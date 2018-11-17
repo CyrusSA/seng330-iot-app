@@ -1,10 +1,16 @@
 package ca.uvic.seng330.assn3.controllers;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
+
+import org.apache.commons.io.FileUtils;
 
 import ca.uvic.seng330.assn3.models.devices.*;
 import ca.uvic.seng330.assn3.ClientInstance;
@@ -13,6 +19,7 @@ import ca.uvic.seng330.assn3.models.DesktopClient;
 import ca.uvic.seng330.assn3.models.Hub;
 import ca.uvic.seng330.assn3.models.User;
 import ca.uvic.seng330.assn3.models.devices.Device;
+import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -32,6 +39,10 @@ import javafx.stage.WindowEvent;
 public class AdminController implements Initializable{
 	
 	@FXML private Text title;
+	
+	@FXML private TableView<String> logTable;
+	@FXML private TableColumn<String, String> activitiesColumn;
+	@FXML private Button clearLogButton;
 	
 	@FXML private TableView<Device> deviceTable;
 	@FXML private TableColumn<Device, String> deviceColumn;
@@ -62,14 +73,29 @@ public class AdminController implements Initializable{
 		c = ClientInstance.getClientInstance();
 		h = HubInstance.getHubInstance();
 		
+		//Title
 		title.setText(c.getCurrent().getName()+"'s Dashboard");
 		
+		//logs
+		activitiesColumn.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue()));
+		
+		try {
+			List<String> list = FileUtils.readLines(new File("log.txt"));
+			Collections.reverse(list);
+			logTable.setItems(FXCollections.observableArrayList(list));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		//Devices
 		nameColumn.setCellValueFactory(new PropertyValueFactory<User, String>("name"));
 		usernameColumn.setCellValueFactory(new PropertyValueFactory<User, String>("username"));
 		adminColumn.setCellValueFactory(new PropertyValueFactory<User, String>("admin"));
 		
 		userTable.setItems(getObservableUsers(c.getUsers()));
 		
+		//Users
 		deviceColumn.setCellValueFactory(new PropertyValueFactory<Device, String>("name"));
 		typeColumn.setCellValueFactory(new PropertyValueFactory<Device, String>("type"));
 		statusColumn.setCellValueFactory(new PropertyValueFactory<Device, String>("status"));
@@ -199,6 +225,25 @@ public class AdminController implements Initializable{
 
 	public ObservableList<Device> getObservableDevices(List<Device> devices){
 		return FXCollections.observableArrayList(devices);
+	}
+	
+	public void clearLog() throws FileNotFoundException {
+		PrintWriter writer = new PrintWriter(new File("log.txt"));
+		writer.write("");
+		writer.close();
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("..\\views\\admin.fxml"));
+  	  	Parent root = null;
+	        try {
+	          root = loader.load();
+	        } catch (IOException e) {
+	          // TODO Auto-generated catch block
+	        e.printStackTrace();
+	        }
+        Stage stage = (Stage) title.getScene().getWindow();
+        stage.setTitle("IoT DesktopClient");
+        Scene scene1 = new Scene(root, 800, 850);
+        stage.setScene(scene1);
+        stage.show();
 	}
 
 	@FXML

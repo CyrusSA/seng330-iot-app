@@ -14,6 +14,6 @@ public class SmartPlug extends Device{
     setHub(hub);
     setName(name);
     setType("SmartPlug");
-    hub.alert(this, String.format("SmartPlug %s registered", this.getIdentifier().toString()));
+    hub.alert(this, String.format("SmartPlug %s registered", this.getName()));
   }
 }

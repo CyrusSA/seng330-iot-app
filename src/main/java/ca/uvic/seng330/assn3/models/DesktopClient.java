@@ -2,6 +2,8 @@ package ca.uvic.seng330.assn3.models;
 
 import org.json.JSONObject;
 
+import ca.uvic.seng330.assn3.HubInstance;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.UUID;
@@ -21,7 +23,7 @@ public class DesktopClient implements Client {
    * @param JSONObject json - JSON data from the Mediator
    */
   public void notify(JSONObject json) {
-    System.out.println(json.toString());
+    //System.out.println(json.toString());
   }
 
   public UUID getIdentifier() {
@@ -33,6 +35,9 @@ public class DesktopClient implements Client {
       return false;
     } else {
       users.add(u);
+      Hub h = HubInstance.getHubInstance();
+      h.log(String.format("User %s(username: %s) has been registered", u.getName(), u.getUsername()));
+      HubInstance.setHubInstance(h);
       return true;
     }
   }
@@ -41,6 +46,9 @@ public class DesktopClient implements Client {
     for (User u : users) {
       if (u.getUsername().equals(username)) {
         users.remove(u);
+        Hub h = HubInstance.getHubInstance();
+        h.log(String.format("User %s has been unregistered", u.getName()));
+        HubInstance.setHubInstance(h);
         break;
       }
     }
@@ -51,6 +59,9 @@ public class DesktopClient implements Client {
       if (u.getUsername().equals(username)) {
         if (u.getPassword().equals(password)) {
           current = u;
+          Hub h = HubInstance.getHubInstance();
+          h.log(String.format("User %s logged in", u.getName()));
+          HubInstance.setHubInstance(h);
           return u;
         }
       }
