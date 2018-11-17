@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import ca.uvic.seng330.assn3.models.devices.*;
 import ca.uvic.seng330.assn3.ClientInstance;
 import ca.uvic.seng330.assn3.HubInstance;
 import ca.uvic.seng330.assn3.models.DesktopClient;
@@ -47,6 +48,11 @@ public class AdminController implements Initializable{
 	
 	@FXML private Button addUserButton;
 	@FXML private Button deleteUserButton;
+	@FXML private Button camera_button;
+	@FXML private Button lightbulb_button;
+	@FXML private Button smartplug_button;
+	@FXML private Button thermostat_button;
+
 	
 	private DesktopClient c;
 	private Hub h;
@@ -190,7 +196,116 @@ public class AdminController implements Initializable{
 		return FXCollections.observableArrayList(users);
 	}
 	
+
 	public ObservableList<Device> getObservableDevices(List<Device> devices){
 		return FXCollections.observableArrayList(devices);
+	}
+
+	@FXML
+	public void cam() throws IOException {
+		Stage stage = new Stage();
+		stage.setTitle("Device - Camera");
+		Parent root = FXMLLoader.load(getClass().getResource("..\\views\\camera.fxml"));
+		Scene scene = new Scene(root, 530, 330);
+		stage.setScene(scene);
+		stage.show();
+		stage.setOnCloseRequest(new EventHandler<WindowEvent>() { //refresh stage
+			public void handle(WindowEvent we) {
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("..\\views\\user.fxml"));
+				Parent root = null;
+				try {
+			          root = loader.load();
+			        } catch (IOException e) {
+			          // TODO Auto-generated catch block
+			        e.printStackTrace();
+			        }
+	              //Stage stage = (Stage) title.getScene().getWindow();
+	              stage.setTitle("IoT DesktopClient");
+	              Scene scene1 = new Scene(root, 800, 850);
+	              stage.setScene(scene1);
+	              stage.show();
+	          }
+		});
+	}
+	
+	@FXML
+	public void light() throws IOException{
+		Stage stage = new Stage();
+		stage.setTitle("Device - LightBulb");
+		Parent root = FXMLLoader.load(getClass().getResource("..\\views\\lightbulb.fxml"));
+		Scene scene = new Scene(root, 530, 330);
+		stage.setScene(scene);
+		stage.show();
+		stage.setOnCloseRequest(new EventHandler<WindowEvent>() { //refresh stage
+			public void handle(WindowEvent we) {
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("..\\views\\user.fxml"));
+				Parent root = null;
+				try {
+			          root = loader.load();
+			        } catch (IOException e) {
+			          // TODO Auto-generated catch block
+			        e.printStackTrace();
+			        }
+	              //Stage stage = (Stage) title.getScene().getWindow();
+	              stage.setTitle("IoT DesktopClient");
+	              Scene scene1 = new Scene(root, 800, 850);
+	              stage.setScene(scene1);
+	              stage.show();
+	          }
+		});
+	}
+	
+	@FXML
+	public void smart()throws IOException {
+		Stage stage = new Stage();
+		stage.setTitle("Device - SmartPlug");
+		Parent root = FXMLLoader.load(getClass().getResource("..\\views\\smartplug.fxml"));
+		Scene scene = new Scene(root, 530, 330);
+		stage.setScene(scene);
+		stage.show();
+		stage.setOnCloseRequest(new EventHandler<WindowEvent>() { //refresh stage
+			public void handle(WindowEvent we) {
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("..\\views\\user.fxml"));
+				Parent root = null;
+				try {
+			          root = loader.load();
+			        } catch (IOException e) {
+			          // TODO Auto-generated catch block
+			        e.printStackTrace();
+			        }
+	              //Stage stage = (Stage) title.getScene().getWindow();
+	              stage.setTitle("IoT DesktopClient");
+	              Scene scene1 = new Scene(root, 800, 850);
+	              stage.setScene(scene1);
+	              stage.show();
+	          }
+		});
+	}
+	
+	@FXML
+	public void ther() throws IOException{
+		Stage stage = new Stage();
+		stage.setTitle("Device - Thermostat");
+		Parent root = FXMLLoader.load(getClass().getResource("..\\views\\thermostat.fxml"));
+		Scene scene = new Scene(root, 530, 330);
+		stage.setScene(scene);
+		stage.show();
+		stage.setOnCloseRequest(new EventHandler<WindowEvent>() { //refresh stage
+			public void handle(WindowEvent we) {
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("..\\views\\user.fxml"));
+				Parent root = null;
+				try {
+			          root = loader.load();
+			        } catch (IOException e) {
+			          // TODO Auto-generated catch block
+			        e.printStackTrace();
+			        }
+	             // Stage stage = (Stage) title.getScene().getWindow();
+	              stage.setTitle("IoT DesktopClient");
+	              Scene scene1 = new Scene(root, 800, 850);
+	              stage.setScene(scene1);
+	              stage.show();
+	          }
+		});
 	}
 }
