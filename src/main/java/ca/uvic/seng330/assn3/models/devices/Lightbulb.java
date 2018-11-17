@@ -15,7 +15,7 @@ public class Lightbulb extends Device{
     setHub(hub);
     setName(name);
     setType("Lightbulb");
-    hub.alert(this, String.format("Lightbulb %s registered", this.getIdentifier().toString()));
+    hub.alert(this, String.format("Lightbulb %s registered", this.getName()));
   }
 
   /*

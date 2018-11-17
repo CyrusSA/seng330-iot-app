@@ -24,7 +24,7 @@ public class DeleteUserController implements Initializable{
 		DesktopClient c = ClientInstance.getClientInstance();
 		for(User u: c.getUsers()) {
 			if(u.getUsername().equals(usernameField.getText())) {
-				c.getUsers().remove(u);
+				c.unregisterUser(u.getUsername());
 				break;
 			}
 		}
