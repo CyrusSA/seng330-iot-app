@@ -41,7 +41,7 @@ public class MainTest extends ApplicationTest{
 	public void contain_passward() {
 		clickOn("#passwordField").write("passward");
 		clickOn("#loginButton");
-		assertThat(login.passwordField.getText(), is("passward"));
+		verifyThat(login.passwordField.getText(), is("passward"));
 	}
 	
 	@Test

@@ -2,8 +2,6 @@
 
 {"temperature":{"temperature":50.0,"unit":"FAHRENHEIT"},"uuid":"d6133ed8-fd5b-4725-a6d2-7133effea0ef","status":"OFFLINE","name":"Main Thermostat","type":"Thermostat"}
 
-{"isRecording":false,"diskSize":0,"uuid":"ef4e0d52-0b8f-42e8-a259-db01babdd605","status":"OFFLINE","name":"Main Camera","type":"Camera"}
-
 {"state":false,"uuid":"039c50b5-a096-48f0-bd45-171a77b0cadb","status":"FUNCTIONING","name":"Main SmartPlug","type":"SmartPlug"}
 
 {"state":false,"uuid":"a65e9bf3-d18f-4a03-a32c-12df358029cd","status":"FUNCTIONING","name":"Lightbulb","type":"Lightbulb"}
