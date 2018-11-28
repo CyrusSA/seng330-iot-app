@@ -1,7 +1,21 @@
-User Admin logged in
-User Admin logged in
-User Admin logged in
-User Admin logged in
-User Admin logged in
 User Test logged in
-User Test logged in
+User Admin logged in
+User Admin logged in
+User Admin logged in
+User new has been unregistered
+User Admin logged in
+Main Camera Camera(UUID: ef4e0d52-0b8f-42e8-a259-db01babdd605) unregistered
+User Admin logged in
+User d(username: f) has been registered
+User d has been unregistered
+Main Camera Camera(UUID: 589cba01-12bc-42d3-b4b4-4406d74eced8) registered
+Not Recording
+Recording
+Not Recording
+Recording
+User Admin logged in
+User Admin logged in
+User Admin logged in
+Main Camera Camera(UUID: 589cba01-12bc-42d3-b4b4-4406d74eced8) unregistered
+cam Camera(UUID: dfcd2b67-5c2c-473b-9496-8fbfcf10c765) registered
+User Admin logged in
