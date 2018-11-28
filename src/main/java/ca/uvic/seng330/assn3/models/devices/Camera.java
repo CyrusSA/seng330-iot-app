@@ -32,10 +32,10 @@ public class Camera extends Device {
     }
     if (isRecording) {
       isRecording = false;
-      getHub().alert(this, "Recording");
+      //getHub().alert(this, "Recording");
     } else {
       isRecording = true;
-      getHub().alert(this, "Not Recording");
+      //getHub().alert(this, "Not Recording");
     }
   }
   

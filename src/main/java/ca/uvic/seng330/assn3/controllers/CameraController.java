@@ -4,6 +4,10 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.TimeUnit;
 
 import ca.uvic.seng330.assn3.DeviceInstance;
 import ca.uvic.seng330.assn3.models.Status;
@@ -34,6 +38,11 @@ public class CameraController implements Initializable {
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
 
+    m = new Media("https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_10mb.mp4");
+    mp = new MediaPlayer(m);
+    mv.setMediaPlayer(mp);
+    mp.setAutoPlay(true);
+
     c = (Camera) DeviceInstance.getDeviceInstance();
     if (c.getStatus() == Status.FUNCTIONING) {
       turnOn();
@@ -42,6 +51,8 @@ public class CameraController implements Initializable {
 
   @FXML
   public void record() {
+    ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
+    ScheduledFuture<?> t;
     if (!c.getIsRecording()) {
       recordButton.setText("Stop");
       try {
@@ -49,24 +60,19 @@ public class CameraController implements Initializable {
       } catch (CameraFullException e) {
         c.setStatus(Status.ERROR);
       }
-      Timer timer = new Timer();
-      timer.schedule(
-          new TimerTask() {
 
-            @Override
+      Runnable memRunnable =
+          new Runnable() {
             public void run() {
-              Platform.runLater(
-                  new Runnable() {
-                    @Override
-                    public void run() {
-                      c.setFreeMemory(c.getFreeMemory() - 1);
-                      capacity.setText("" + c.getFreeMemory());
-                    }
-                  });
+              c.setFreeMemory(c.getFreeMemory() - 1);
+              capacity.setText("" + c.getFreeMemory());
             }
-          },
-          1000);
+          };
+
+      t = executor.scheduleAtFixedRate(memRunnable, 0, 1, TimeUnit.SECONDS);
+
     } else {
+      t.cancel(false);
       recordButton.setText("Record");
       try {
         c.record();
@@ -79,17 +85,13 @@ public class CameraController implements Initializable {
   @FXML
   public void clearMemory() {
     c.clearDisk();
+    capacity.setText("" + c.getFreeMemory());
   }
 
   @FXML
   public void turnOn() {
 
     capacity.setText("" + c.getFreeMemory());
-
-    m = new Media("https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_10mb.mp4");
-    mp = new MediaPlayer(m);
-    mv.setMediaPlayer(mp);
-    mp.setAutoPlay(true);
 
     c.setStatus(Status.FUNCTIONING);
   }
