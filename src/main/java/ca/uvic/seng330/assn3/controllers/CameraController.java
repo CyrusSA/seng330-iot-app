@@ -10,9 +10,12 @@ import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
 import ca.uvic.seng330.assn3.DeviceInstance;
+import ca.uvic.seng330.assn3.HubInstance;
+import ca.uvic.seng330.assn3.models.Hub;
 import ca.uvic.seng330.assn3.models.Status;
 import ca.uvic.seng330.assn3.models.devices.Camera;
 import ca.uvic.seng330.assn3.models.devices.CameraFullException;
+import ca.uvic.seng330.assn3.models.devices.Device;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -35,6 +38,8 @@ public class CameraController implements Initializable {
 
   private Camera c;
 
+  Thread t;
+
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
 
@@ -46,9 +51,8 @@ public class CameraController implements Initializable {
 
   @FXML
   public void record() {
-    ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
-    ScheduledFuture<?> t;
     if (!c.getIsRecording()) {
+      t = new Thread(new DepleteMemory());
       recordButton.setText("Stop");
       try {
         c.record();
@@ -56,24 +60,17 @@ public class CameraController implements Initializable {
         c.setStatus(Status.ERROR);
       }
 
-      Runnable memRunnable =
-          new Runnable() {
-            public void run() {
-              c.setFreeMemory(c.getFreeMemory() - 1);
-              capacity.setText("" + c.getFreeMemory());
-            }
-          };
-
-      //t = executor.scheduleAtFixedRate(memRunnable, 0, 1, TimeUnit.SECONDS);
+      t.start();
 
     } else {
-      //t.cancel(false);
-      recordButton.setText("Record");
+    	recordButton.setText("Record");
       try {
         c.record();
       } catch (CameraFullException e) {
         c.setStatus(Status.ERROR);
       }
+
+      t.interrupt();
     }
   }
 
@@ -85,11 +82,11 @@ public class CameraController implements Initializable {
 
   @FXML
   public void turnOn() {
-	  
-	    m = new Media("https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_10mb.mp4");
-	    mp = new MediaPlayer(m);
-	    mv.setMediaPlayer(mp);
-	    mp.play();
+
+    m = new Media("https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_10mb.mp4");
+    mp = new MediaPlayer(m);
+    mv.setMediaPlayer(mp);
+    mp.play();
 
     capacity.setText("" + c.getFreeMemory());
 
@@ -100,6 +97,25 @@ public class CameraController implements Initializable {
   public void turnOff() {
     capacity.setText("");
     mp.stop();
+    mv.setMediaPlayer(null);;
     c.setStatus(Status.OFFLINE);
+  }
+
+  class DepleteMemory implements Runnable {
+
+    @Override
+    public void run() {
+
+      while (!Thread.currentThread().isInterrupted()) {
+        try {
+          c.setFreeMemory(c.getFreeMemory() - 1);
+          capacity.setText("" + c.getFreeMemory());
+          Thread.sleep(1000);
+
+        } catch (InterruptedException e) {
+          return;
+        }
+      }
+    }
   }
 }

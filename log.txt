@@ -35,3 +35,29 @@ Status of cam(UUID: dfcd2b67-5c2c-473b-9496-8fbfcf10c765): FUNCTIONING
 Status of Main Thermostat(UUID: d6133ed8-fd5b-4725-a6d2-7133effea0ef): OFFLINE
 Status of Main SmartPlug(UUID: 039c50b5-a096-48f0-bd45-171a77b0cadb): FUNCTIONING
 Status of Lightbulb(UUID: a65e9bf3-d18f-4a03-a32c-12df358029cd): FUNCTIONING
+User Admin logged in
+User Admin logged in
+User Admin logged in
+User Admin logged in
+User Admin logged in
+User Admin logged in
+User Admin logged in
+User Admin logged in
+User Admin logged in
+User Admin logged in
+User Admin logged in
+User Admin logged in
+User Admin logged in
+User Admin logged in
+User Admin logged in
+User Admin logged in
+User Admin logged in
+User Admin logged in
+User Admin logged in
+User Admin logged in
+User Admin logged in
+Status of thermo(UUID: 18bee714-a76a-411f-8b46-c4eb60bfe94d): OFFLINE
+Status of cam(UUID: dfcd2b67-5c2c-473b-9496-8fbfcf10c765): FUNCTIONING
+Status of Main Thermostat(UUID: d6133ed8-fd5b-4725-a6d2-7133effea0ef): OFFLINE
+Status of Main SmartPlug(UUID: 039c50b5-a096-48f0-bd45-171a77b0cadb): FUNCTIONING
+Status of Lightbulb(UUID: a65e9bf3-d18f-4a03-a32c-12df358029cd): FUNCTIONING
