@@ -52,5 +52,6 @@
       <Button fx:id="deleteUserButton" layoutX="171.0" layoutY="810.0" mnemonicParsing="false" onAction="#deleteUser" text="Delete User" />
       <Button fx:id="clearLogButton" layoutX="53.0" layoutY="275.0" mnemonicParsing="false" onAction="#clearLog" text="Clear Log" />
       <Button fx:id="statusCheckButton" layoutX="425.0" layoutY="544.0" mnemonicParsing="false" onAction="#statusCheck" text="Status Check" />
+      <Button fx:id="shutdownButton" layoutX="457.0" layoutY="810.0" mnemonicParsing="false" onAction="#shutdown" text="Shutdown" />
    </children>
 </AnchorPane>

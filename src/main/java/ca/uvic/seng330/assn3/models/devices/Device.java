@@ -1,6 +1,5 @@
 package ca.uvic.seng330.assn3.models.devices;
 
-import java.util.Arrays;
 import java.util.UUID;
 
 import ca.uvic.seng330.assn3.models.Hub;
@@ -56,10 +55,10 @@ public abstract class Device {
   public Hub getHub() {
     return hub;
   }
-  
+
   public void setType(String type) {
-	    this.type = type;
-	  }
+    this.type = type;
+  }
 
   public String getType() {
     String[] s = this.getClass().toString().split("\\.");
@@ -72,5 +71,9 @@ public abstract class Device {
 
   public void setName(String name) {
     this.name = name;
+  }
+
+  public void turnOff() {
+    setStatus(Status.OFFLINE);
   }
 }

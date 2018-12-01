@@ -2,21 +2,11 @@ package ca.uvic.seng330.assn3.controllers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.ScheduledFuture;
-import java.util.concurrent.TimeUnit;
 
 import ca.uvic.seng330.assn3.DeviceInstance;
-import ca.uvic.seng330.assn3.HubInstance;
-import ca.uvic.seng330.assn3.models.Hub;
 import ca.uvic.seng330.assn3.models.Status;
 import ca.uvic.seng330.assn3.models.devices.Camera;
 import ca.uvic.seng330.assn3.models.devices.CameraFullException;
-import ca.uvic.seng330.assn3.models.devices.Device;
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -52,18 +42,22 @@ public class CameraController implements Initializable {
   @FXML
   public void record() {
     if (!c.getIsRecording()) {
-      t = new Thread(new DepleteMemory());
-      recordButton.setText("Stop");
       try {
         c.record();
       } catch (CameraFullException e) {
         c.setStatus(Status.ERROR);
+        ControllerMethods.errorAlert("Camera is Full.");
+        return;
       }
 
+      t = new Thread(new DepleteMemory());
+      recordButton.setText("Stop");
+
       t.start();
+      c.setStatus(Status.FUNCTIONING);
 
     } else {
-    	recordButton.setText("Record");
+      recordButton.setText("Record");
       try {
         c.record();
       } catch (CameraFullException e) {
@@ -97,7 +91,8 @@ public class CameraController implements Initializable {
   public void turnOff() {
     capacity.setText("");
     mp.stop();
-    mv.setMediaPlayer(null);;
+    mv.setMediaPlayer(null);
+    ;
     c.setStatus(Status.OFFLINE);
   }
 
@@ -108,6 +103,11 @@ public class CameraController implements Initializable {
 
       while (!Thread.currentThread().isInterrupted()) {
         try {
+          if (c.getFreeMemory() <= 0) {
+            c.setStatus(Status.ERROR);
+            ControllerMethods.errorAlert("Camera is Full.");
+            return;
+          }
           c.setFreeMemory(c.getFreeMemory() - 1);
           capacity.setText("" + c.getFreeMemory());
           Thread.sleep(1000);

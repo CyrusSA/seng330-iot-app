@@ -1,12 +1,11 @@
 package ca.uvic.seng330.assn3.models;
 
+import java.util.ArrayList;
+import java.util.UUID;
+
 import org.json.JSONObject;
 
 import ca.uvic.seng330.assn3.HubInstance;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.UUID;
 
 public class DesktopClient implements Client {
   public ArrayList<User> users;

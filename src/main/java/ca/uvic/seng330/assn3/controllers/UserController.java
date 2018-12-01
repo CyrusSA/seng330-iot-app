@@ -6,14 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import ca.uvic.seng330.assn3.models.devices.*;
-
 import ca.uvic.seng330.assn3.ClientInstance;
 import ca.uvic.seng330.assn3.DeviceInstance;
 import ca.uvic.seng330.assn3.HubInstance;
 import ca.uvic.seng330.assn3.models.DesktopClient;
 import ca.uvic.seng330.assn3.models.Hub;
-import ca.uvic.seng330.assn3.models.User;
+import ca.uvic.seng330.assn3.models.devices.Device;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;

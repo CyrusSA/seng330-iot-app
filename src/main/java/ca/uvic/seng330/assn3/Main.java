@@ -1,7 +1,5 @@
 package ca.uvic.seng330.assn3;
 
-import javafx.application.Application;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -15,9 +13,16 @@ import org.json.JSONObject;
 
 import com.google.gson.Gson;
 
-import ca.uvic.seng330.assn3.models.*;
-import ca.uvic.seng330.assn3.models.devices.*;
-
+import ca.uvic.seng330.assn3.models.Client;
+import ca.uvic.seng330.assn3.models.DesktopClient;
+import ca.uvic.seng330.assn3.models.Hub;
+import ca.uvic.seng330.assn3.models.HubRegistrationException;
+import ca.uvic.seng330.assn3.models.devices.Camera;
+import ca.uvic.seng330.assn3.models.devices.Device;
+import ca.uvic.seng330.assn3.models.devices.Lightbulb;
+import ca.uvic.seng330.assn3.models.devices.SmartPlug;
+import ca.uvic.seng330.assn3.models.devices.Thermostat;
+import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -30,18 +35,13 @@ public class Main extends Application {
     DesktopClient c = readClient(h);
     ClientInstance.setClientInstance(c);
     HubInstance.setHubInstance(h);
-    
+
     launch(args);
   }
 
   @Override
   public void start(Stage primaryStage) throws Exception {
-//	  Hub h = new Hub();
-//	  h.register(new Camera(h, "Main Camera"));
-//	  h.register(new Thermostat(h, "Main Thermostat"));
-//	  h.register(new SmartPlug(h, "Main SmartPlug"));
-//	  writeDevices(h);
-//	  HubInstance.setHubInstance(h);
+	  
     primaryStage.setTitle("IoT DesktopClient - Login");
     Parent root = FXMLLoader.load(getClass().getResource("\\views\\login.fxml"));
     Scene scene = new Scene(root, 600, 400);
@@ -49,7 +49,7 @@ public class Main extends Application {
     primaryStage.show();
   }
 
-  @Override //Saves data when application closes
+  @Override // Saves data when application closes
   public void stop() throws HubRegistrationException, IOException {
     writeDevices(HubInstance.getHubInstance());
     writeClient(ClientInstance.getClientInstance());
@@ -60,7 +60,7 @@ public class Main extends Application {
     Gson gson = new Gson();
     ArrayList<String> objects = new ArrayList<String>();
     for (Device d : h.getDevices().values()) {
-    	//System.out.println(d.getType());
+      // System.out.println(d.getType());
       objects.add(gson.toJson(d) + "\n");
     }
     FileUtils.writeLines(new File("devices.json"), objects);
@@ -75,14 +75,14 @@ public class Main extends Application {
       if (s.isEmpty()) continue;
       JSONObject json = new JSONObject(s);
       Device d = null;
-      if(json.get("type").equals("Camera")) {
-    	  d = gson.fromJson(s, Camera.class);
-      } else if(json.get("type").equals("Lightbulb")) {
-    	  d = gson.fromJson(s, Lightbulb.class);
-      } else if(json.get("type").equals("SmartPlug")) {
-    	  d = gson.fromJson(s, SmartPlug.class);
+      if (json.get("type").equals("Camera")) {
+        d = gson.fromJson(s, Camera.class);
+      } else if (json.get("type").equals("Lightbulb")) {
+        d = gson.fromJson(s, Lightbulb.class);
+      } else if (json.get("type").equals("SmartPlug")) {
+        d = gson.fromJson(s, SmartPlug.class);
       } else {
-    	  d = gson.fromJson(s, Thermostat.class);
+        d = gson.fromJson(s, Thermostat.class);
       }
       devices.put(d.getIdentifier(), d);
     }
@@ -91,7 +91,7 @@ public class Main extends Application {
   }
 
   public static void writeClient(DesktopClient c) throws IOException {
-	 clearFile("client.json");
+    clearFile("client.json");
     Gson gson = new Gson();
     FileUtils.writeStringToFile(new File("client.json"), gson.toJson(c));
   }

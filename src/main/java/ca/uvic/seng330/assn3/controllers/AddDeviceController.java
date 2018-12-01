@@ -3,12 +3,9 @@ package ca.uvic.seng330.assn3.controllers;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import ca.uvic.seng330.assn3.ClientInstance;
 import ca.uvic.seng330.assn3.HubInstance;
-import ca.uvic.seng330.assn3.models.DesktopClient;
 import ca.uvic.seng330.assn3.models.Hub;
 import ca.uvic.seng330.assn3.models.HubRegistrationException;
-import ca.uvic.seng330.assn3.models.User;
 import ca.uvic.seng330.assn3.models.devices.Camera;
 import ca.uvic.seng330.assn3.models.devices.Device;
 import ca.uvic.seng330.assn3.models.devices.Lightbulb;
@@ -18,7 +15,6 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 

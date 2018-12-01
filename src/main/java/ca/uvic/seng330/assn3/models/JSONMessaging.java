@@ -1,10 +1,10 @@
 package ca.uvic.seng330.assn3.models;
 
-import org.json.*;
-
-import ca.uvic.seng330.assn3.models.devices.*;
-
 import java.util.Date;
+
+import org.json.JSONObject;
+
+import ca.uvic.seng330.assn3.models.devices.Device;
 
 public class JSONMessaging {
   private Device d;

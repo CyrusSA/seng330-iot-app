@@ -1,21 +1,7 @@
 package ca.uvic.seng330.assn3.controllers;
 
-import java.io.File;
-import java.io.IOException;
-
-import org.apache.commons.io.FileUtils;
-
-
-import ca.uvic.seng330.assn3.models.DesktopClient;
-import ca.uvic.seng330.assn3.models.Hub;
-import ca.uvic.seng330.assn3.models.HubRegistrationException;
-
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.stage.Stage;
 
 public class ControllerMethods {
 //  public static void write(DesktopClient c, Hub h) {

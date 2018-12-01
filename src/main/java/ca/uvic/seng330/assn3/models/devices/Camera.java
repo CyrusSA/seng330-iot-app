@@ -2,8 +2,6 @@ package ca.uvic.seng330.assn3.models.devices;
 
 import java.util.UUID;
 
-import com.google.gson.annotations.Expose;
-
 import ca.uvic.seng330.assn3.models.Hub;
 import ca.uvic.seng330.assn3.models.HubRegistrationException;
 import ca.uvic.seng330.assn3.models.Status;

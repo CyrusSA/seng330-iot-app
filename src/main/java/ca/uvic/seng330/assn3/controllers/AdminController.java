@@ -12,7 +12,6 @@ import java.util.ResourceBundle;
 
 import org.apache.commons.io.FileUtils;
 
-import ca.uvic.seng330.assn3.models.devices.*;
 import ca.uvic.seng330.assn3.ClientInstance;
 import ca.uvic.seng330.assn3.DeviceInstance;
 import ca.uvic.seng330.assn3.HubInstance;
@@ -21,6 +20,7 @@ import ca.uvic.seng330.assn3.models.Hub;
 import ca.uvic.seng330.assn3.models.HubRegistrationException;
 import ca.uvic.seng330.assn3.models.User;
 import ca.uvic.seng330.assn3.models.devices.Device;
+import javafx.application.Platform;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -306,5 +306,18 @@ public class AdminController implements Initializable {
     Scene scene1 = new Scene(root, 800, 850);
     stage.setScene(scene1);
     stage.show();
+  }
+  
+  public void shutdown() {
+	  for(Device d: h.getDevices().values()) {
+		  d.turnOff();
+	  }
+	  
+	  h.log("System Shutdown");
+	  
+	  HubInstance.setHubInstance(h);
+	  ClientInstance.setClientInstance(c);
+	  
+	  Platform.exit();
   }
 }
