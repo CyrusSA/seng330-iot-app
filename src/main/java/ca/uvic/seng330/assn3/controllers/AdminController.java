@@ -54,6 +54,7 @@ public class AdminController implements Initializable {
   @FXML private Button addDeviceButton;
   @FXML private Button deleteDeviceButton;
   @FXML private Button launchButton;
+  @FXML private Button checkStatusButton;
 
   @FXML private TableView<User> userTable;
   @FXML private TableColumn<User, String> nameColumn;
@@ -186,21 +187,21 @@ public class AdminController implements Initializable {
 
   @FXML
   public void deleteDevice() throws IOException, HubRegistrationException {
-	    Device device = deviceTable.getSelectionModel().getSelectedItem();
-	    h.unregister(device);
-	    FXMLLoader loader = new FXMLLoader(getClass().getResource("..\\views\\admin.fxml"));
-	    Parent root = null;
-	    try {
-	      root = loader.load();
-	    } catch (IOException e) {
-	      // TODO Auto-generated catch block
-	      e.printStackTrace();
-	    }
-	    Stage stage = (Stage) title.getScene().getWindow();
-	    stage.setTitle("IoT DesktopClient");
-	    Scene scene1 = new Scene(root, 600, 850);
-	    stage.setScene(scene1);
-	    stage.show();
+    Device device = deviceTable.getSelectionModel().getSelectedItem();
+    h.unregister(device);
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("..\\views\\admin.fxml"));
+    Parent root = null;
+    try {
+      root = loader.load();
+    } catch (IOException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+    Stage stage = (Stage) title.getScene().getWindow();
+    stage.setTitle("IoT DesktopClient");
+    Scene scene1 = new Scene(root, 600, 850);
+    stage.setScene(scene1);
+    stage.show();
   }
 
   @FXML
@@ -214,7 +215,12 @@ public class AdminController implements Initializable {
     stage.setTitle("Device - " + dType);
     Parent root =
         FXMLLoader.load(getClass().getResource("..\\views\\" + dType.toLowerCase() + ".fxml"));
-    Scene scene = new Scene(root, 530, 330);
+    Scene scene = null;
+    if (dType.equals("Camera")) {
+      scene = new Scene(root, 600, 400);
+    } else {
+      scene = new Scene(root, 530, 330);
+    }
     stage.setScene(scene);
     stage.show();
 
@@ -237,6 +243,42 @@ public class AdminController implements Initializable {
             stage.show();
           }
         });
+  }
+  
+  @FXML
+  public void statusCheck() throws InterruptedException {
+	  class StatusCheckThread implements Runnable{
+		  private Hub h;
+
+	    @Override
+	    public void run() {
+	      h = HubInstance.getHubInstance();
+	      for(Device d: h.getDevices().values()) {
+	    	  h.log(String.format("Status of %s(UUID: %s): %s", d.getName(), d.getIdentifier().toString(), d.getStatus().toString()));
+	      }
+	    } 
+	  }
+	  
+	  HubInstance.setHubInstance(h);
+	  
+	  Thread t = new Thread(new StatusCheckThread());
+	  
+	  t.start();
+	  t.join();
+	  
+	  FXMLLoader loader = new FXMLLoader(getClass().getResource("..\\views\\admin.fxml"));
+      Parent root = null;
+      try {
+        root = loader.load();
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+
+      Stage stage = (Stage) title.getScene().getWindow();
+      stage.setTitle("Home Automation System");
+      Scene scene1 = new Scene(root, 600, 850);
+      stage.setScene(scene1);
+      stage.show();
   }
 
   public ObservableList<User> getObservableUsers(List<User> users) {

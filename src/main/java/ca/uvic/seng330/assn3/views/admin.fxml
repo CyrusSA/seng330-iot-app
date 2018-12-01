@@ -46,10 +46,11 @@
           <TableColumn fx:id="adminColumn" prefWidth="130.0" text="Admin" />
         </columns>
       </TableView>
-      <Button fx:id="deleteDeviceButton" layoutX="172.0" layoutY="544.0" mnemonicParsing="false" onAction="#deleteDevice" text="Remove Device" />
-      <Button fx:id="launchButton" layoutX="313.0" layoutY="544.0" mnemonicParsing="false" onAction="#launchDevice" text="Launch Selected Device" />
+      <Button fx:id="deleteDeviceButton" layoutX="144.0" layoutY="544.0" mnemonicParsing="false" onAction="#deleteDevice" text="Remove Device" />
+      <Button fx:id="launchButton" layoutX="259.0" layoutY="544.0" mnemonicParsing="false" onAction="#launchDevice" text="Launch Selected Device" />
       <Button fx:id="addUserButton" layoutX="64.0" layoutY="810.0" mnemonicParsing="false" onAction="#addUser" text="Add User" />
       <Button fx:id="deleteUserButton" layoutX="171.0" layoutY="810.0" mnemonicParsing="false" onAction="#deleteUser" text="Delete User" />
       <Button fx:id="clearLogButton" layoutX="53.0" layoutY="275.0" mnemonicParsing="false" onAction="#clearLog" text="Clear Log" />
+      <Button fx:id="statusCheckButton" layoutX="425.0" layoutY="544.0" mnemonicParsing="false" onAction="#statusCheck" text="Status Check" />
    </children>
 </AnchorPane>

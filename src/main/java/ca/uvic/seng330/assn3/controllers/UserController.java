@@ -70,7 +70,12 @@ public class UserController implements Initializable{
 		Stage stage = new Stage();
 		stage.setTitle("Device - " + dType);
 		Parent root = FXMLLoader.load(getClass().getResource("..\\views\\" + dType.toLowerCase() + ".fxml"));
-		Scene scene = new Scene(root, 530, 330);
+		Scene scene = null;
+	    if (dType.equals("Camera")) {
+	      scene = new Scene(root, 600, 400);
+	    } else {
+	      scene = new Scene(root, 530, 330);
+	    }
 		stage.setScene(scene);
 		stage.show();
 		

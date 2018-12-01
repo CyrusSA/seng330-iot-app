@@ -38,11 +38,6 @@ public class CameraController implements Initializable {
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
 
-    m = new Media("https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_10mb.mp4");
-    mp = new MediaPlayer(m);
-    mv.setMediaPlayer(mp);
-    mp.setAutoPlay(true);
-
     c = (Camera) DeviceInstance.getDeviceInstance();
     if (c.getStatus() == Status.FUNCTIONING) {
       turnOn();
@@ -69,10 +64,10 @@ public class CameraController implements Initializable {
             }
           };
 
-      t = executor.scheduleAtFixedRate(memRunnable, 0, 1, TimeUnit.SECONDS);
+      //t = executor.scheduleAtFixedRate(memRunnable, 0, 1, TimeUnit.SECONDS);
 
     } else {
-      t.cancel(false);
+      //t.cancel(false);
       recordButton.setText("Record");
       try {
         c.record();
@@ -90,6 +85,11 @@ public class CameraController implements Initializable {
 
   @FXML
   public void turnOn() {
+	  
+	    m = new Media("https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_10mb.mp4");
+	    mp = new MediaPlayer(m);
+	    mv.setMediaPlayer(mp);
+	    mp.play();
 
     capacity.setText("" + c.getFreeMemory());
 
