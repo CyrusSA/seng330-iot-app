@@ -42,7 +42,7 @@ public class Main extends Application {
   @Override
   public void start(Stage primaryStage) throws Exception {
     primaryStage.setTitle("IoT DesktopClient - Login");
-    String path = String.format("%1$sviews%1$slogin.fxml", File.separator);
+    String path = String.format(".%1$sviews%1$slogin.fxml", File.separator);
     System.out.println(path);
     Parent root = FXMLLoader.load(getClass().getResource(path));
     Scene scene = new Scene(root, 600, 400);

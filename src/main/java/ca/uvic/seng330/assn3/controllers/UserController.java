@@ -1,5 +1,6 @@
 package ca.uvic.seng330.assn3.controllers;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -67,7 +68,7 @@ public class UserController implements Initializable{
 		
 		Stage stage = new Stage();
 		stage.setTitle("Device - " + dType);
-		Parent root = FXMLLoader.load(getClass().getResource("..\\views\\" + dType.toLowerCase() + ".fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource(String.format("..%1$sviews%1$s%2$s.fxml", File.separator, dType.toLowerCase())));
 		Scene scene = null;
 	    if (dType.equals("Camera")) {
 	      scene = new Scene(root, 600, 400);
@@ -80,7 +81,7 @@ public class UserController implements Initializable{
 		//refresh stage
 		stage.setOnCloseRequest(new EventHandler<WindowEvent>() { 
 			public void handle(WindowEvent we) {
-				FXMLLoader loader = new FXMLLoader(getClass().getResource("..\\views\\user.fxml"));
+				FXMLLoader loader = new FXMLLoader(getClass().getResource(String.format("..%1$sviews%1$suser.fxml", File.separator)));
 				Parent root = null;
 				try {
 			          root = loader.load();

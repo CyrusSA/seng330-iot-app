@@ -74,3 +74,4 @@ User Admin logged in
 User Test logged in
 User Admin logged in
 System Shutdown
+User Admin logged in

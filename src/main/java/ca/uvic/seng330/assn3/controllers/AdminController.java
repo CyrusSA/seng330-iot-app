@@ -111,7 +111,7 @@ public class AdminController implements Initializable {
 
     Stage stage = new Stage();
     stage.setTitle("IoT DesktopClient - Add User");
-    Parent root = FXMLLoader.load(getClass().getResource("..\\views\\add_user.fxml"));
+    Parent root = FXMLLoader.load(getClass().getResource(String.format("..%1$sviews%1$sadd_user.fxml", File.separator)));
     Scene scene = new Scene(root, 530, 330);
     stage.setScene(scene);
     stage.show();
@@ -119,7 +119,7 @@ public class AdminController implements Initializable {
     stage.setOnCloseRequest(
         new EventHandler<WindowEvent>() { // refresh stage
           public void handle(WindowEvent we) {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("..\\views\\admin.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(String.format("..%1$sviews%1$sadmin.fxml", File.separator)));
             Parent root = null;
             try {
               root = loader.load();
@@ -140,7 +140,7 @@ public class AdminController implements Initializable {
   public void deleteUser() throws IOException {
     User user = userTable.getSelectionModel().getSelectedItem();
     c.unregisterUser(user.getUsername());
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("..\\views\\admin.fxml"));
+    FXMLLoader loader = new FXMLLoader(getClass().getResource(String.format("..%1$sviews%1$sadmin.fxml", File.separator)));
     Parent root = null;
     try {
       root = loader.load();
@@ -160,7 +160,7 @@ public class AdminController implements Initializable {
 
     Stage stage = new Stage();
     stage.setTitle("IoT DesktopClient - Add Device");
-    Parent root = FXMLLoader.load(getClass().getResource("..\\views\\add_device.fxml"));
+    Parent root = FXMLLoader.load(getClass().getResource(String.format("..%1$sviews%1$sadd_device.fxml", File.separator)));
     Scene scene = new Scene(root, 530, 330);
     stage.setScene(scene);
     stage.show();
@@ -168,7 +168,7 @@ public class AdminController implements Initializable {
     stage.setOnCloseRequest(
         new EventHandler<WindowEvent>() { // refresh stage
           public void handle(WindowEvent we) {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("..\\views\\admin.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(String.format("..%1$sviews%1$sadmin.fxml", File.separator)));
             Parent root = null;
             try {
               root = loader.load();
@@ -189,7 +189,7 @@ public class AdminController implements Initializable {
   public void deleteDevice() throws IOException, HubRegistrationException {
     Device device = deviceTable.getSelectionModel().getSelectedItem();
     h.unregister(device);
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("..\\views\\admin.fxml"));
+    FXMLLoader loader = new FXMLLoader(getClass().getResource(String.format("..%1$sviews%1$sadmin.fxml", File.separator)));
     Parent root = null;
     try {
       root = loader.load();
@@ -214,7 +214,7 @@ public class AdminController implements Initializable {
     Stage stage = new Stage();
     stage.setTitle("Device - " + dType);
     Parent root =
-        FXMLLoader.load(getClass().getResource("..\\views\\" + dType.toLowerCase() + ".fxml"));
+        FXMLLoader.load(getClass().getResource(String.format("..%1$sviews%1$s%2$s.fxml", File.separator, dType.toLowerCase())));
     Scene scene = null;
     if (dType.equals("Camera")) {
       scene = new Scene(root, 600, 400);
@@ -228,7 +228,7 @@ public class AdminController implements Initializable {
     stage.setOnCloseRequest(
         new EventHandler<WindowEvent>() {
           public void handle(WindowEvent we) {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("..\\views\\admin.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(String.format("..%1$sviews%1$sadmin.fxml", File.separator)));
             Parent root = null;
             try {
               root = loader.load();
@@ -266,7 +266,7 @@ public class AdminController implements Initializable {
 	  t.start();
 	  t.join();
 	  
-	  FXMLLoader loader = new FXMLLoader(getClass().getResource("..\\views\\admin.fxml"));
+	  FXMLLoader loader = new FXMLLoader(getClass().getResource(String.format("..%1$sviews%1$sadmin.fxml", File.separator)));
       Parent root = null;
       try {
         root = loader.load();
@@ -293,7 +293,7 @@ public class AdminController implements Initializable {
     PrintWriter writer = new PrintWriter(new File("log.txt"));
     writer.write("");
     writer.close();
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("..\\views\\admin.fxml"));
+    FXMLLoader loader = new FXMLLoader(getClass().getResource(String.format("..%1$sviews%1$sadmin.fxml", File.separator)));
     Parent root = null;
     try {
       root = loader.load();
