@@ -1,5 +1,6 @@
 package ca.uvic.seng330.assn3.controllers;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -41,11 +42,11 @@ public class LoginController implements Initializable{
       ControllerMethods.errorAlert("Incorrect username or password");
     } else { // authenticated
       if (user.isAdmin()) {
-        loader = new FXMLLoader(getClass().getResource("..\\views\\admin.fxml"));
+        loader = new FXMLLoader(getClass().getResource(String.format("..%1$sviews%1$sadmin.fxml", File.separator)));
         width = 600;
         height = 850;
       } else {
-    	  loader = new FXMLLoader(getClass().getResource("..\\views\\user.fxml"));
+    	  loader = new FXMLLoader(getClass().getResource(String.format("..%1$sviews%1$suser.fxml", File.separator)));
     	  width = 600;
     	  height = 400;
       }
