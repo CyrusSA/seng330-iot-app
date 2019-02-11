@@ -26,3 +26,5 @@ hs_err_pid*
 /build/
 
 local.properties
+
+.DS_STORE
